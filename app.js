@@ -1,7 +1,3 @@
-// ==========================================
-// QUESTION 1: Create Student Objects
-// ==========================================
-
 const students = [
   {
     id: 1,
@@ -38,17 +34,13 @@ const students = [
 console.log("Original Students:");
 console.log(students);
 
-// ==========================================
-// QUESTION 2: Calculate Averages
-// ==========================================
 
-// Function to calculate average grade
 function calculateAverage(grades) {
   const total = grades.reduce((sum, grade) => sum + grade, 0);
   return (total / grades.length).toFixed(2);
 }
 
-// Add average property to each student using map()
+
 const studentsWithAverage = students.map(student => ({
   ...student,
   average: calculateAverage(student.grades)
@@ -57,11 +49,7 @@ const studentsWithAverage = students.map(student => ({
 console.log("\nStudents With Average:");
 console.log(studentsWithAverage);
 
-// ==========================================
-// QUESTION 3: Filter Passing Students
-// ==========================================
 
-// Function to return students with average >= 60
 function getPassingStudents(students) {
   return students.filter(student => parseFloat(student.average) >= 60);
 }
@@ -71,16 +59,11 @@ const passingStudents = getPassingStudents(studentsWithAverage);
 console.log("\nPassing Students:");
 console.log(passingStudents);
 
-// ==========================================
-// QUESTION 4: Functions & Callbacks
-// ==========================================
 
-// Higher-order function that accepts a callback
 function processStudents(students, callback) {
   return students.map(student => callback(student));
 }
 
-// Callback to add letter grade
 function addLetterGrade(student) {
   const average = parseFloat(student.average);
 
@@ -104,7 +87,7 @@ function addLetterGrade(student) {
   };
 }
 
-// Callback to add pass/fail status
+
 function addStatus(student) {
   return {
     ...student,
@@ -112,7 +95,7 @@ function addStatus(student) {
   };
 }
 
-// Apply callbacks
+
 const studentsWithGrades = processStudents(
   studentsWithAverage,
   addLetterGrade
@@ -129,23 +112,18 @@ const studentsWithStatus = processStudents(
 console.log("\nStudents With Status:");
 console.log(studentsWithStatus);
 
-// ==========================================
-// QUESTION 5: Find Student by ID
-// ==========================================
 
-// Function to find student by ID
 function findStudentById(students, id) {
   const student = students.find(student => student.id === id);
   return student || null;
 }
 
-// Test existing student
 const student = findStudentById(studentsWithAverage, 3);
 
 console.log("\nStudent With ID 3:");
 console.log(student);
 
-// Test non-existing student
+
 const missingStudent = findStudentById(studentsWithAverage, 10);
 
 console.log("\nStudent With ID 10:");
